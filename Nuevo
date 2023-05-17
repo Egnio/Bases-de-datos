@@ -1,0 +1,15 @@
+Public Function BuscarXNombre(ByVal nombre As String) As DataSet
+  Dim ds As New DataSet
+  Try
+    nombre = nombre + "%"
+    Dim tsql As String = "select * from ciudad where nombre like @nombre"
+    Dim conn As New SqlConnection(strConn)
+    Dim da As New SqlDataAdapter(tsql, conn)
+    da.SelectCommand.Parameters.AddWithValue("@nombre", nombre)
+    da.Fill(ds)
+  Catch ex As Exception
+  
+  Return ds
+ End Function
+End Clas
+
